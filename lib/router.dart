@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:state_tracker_app/api/client_index.dart';
 import 'package:state_tracker_app/blocs/navigation/navigation_cubit.dart';
 import 'package:state_tracker_app/blocs/theme/theme_cubit.dart';
 import 'package:state_tracker_app/main.dart';
@@ -28,7 +29,8 @@ final router =
     builder: (context, state, child) => MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => NavigationCubit()),
-        BlocProvider(create: (context) => ThemeCubit())
+        BlocProvider(create: (context) => ThemeCubit()),
+        RepositoryProvider(create: (context) => StateTracker.create(baseUrl: Uri(host: "57.128.113.152", scheme: "http")))
       ],
       child: NavigatorScaffold(child: child),
     ),
